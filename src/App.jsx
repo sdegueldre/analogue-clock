@@ -31,6 +31,7 @@ export default function App() {
 	};
 
 	const drawFace = (ctx, rad) => {
+		ctx.beginPath();
 		ctx.arc(rad, rad, rad, 0, 2 * Math.PI);
 		ctx.fillStyle = "#fcfcfc";
 		ctx.fill();
@@ -76,14 +77,17 @@ export default function App() {
 	};
 
 	const drawHand = (ctx, pos, length, width) => {
+		ctx.resetTransform();
+		ctx.fillStyle = '';
 		ctx.beginPath();
 		ctx.lineWidth = width;
 		ctx.lineCap = "round";
-		ctx.moveTo(200, 200);
+		ctx.translate(200, 200);
+		ctx.moveTo(0, 0);
 		ctx.rotate(pos);
-		ctx.lineTo(200, -length);
+		ctx.lineTo(0, -length);
 		ctx.stroke();
-		ctx.rotate(-pos);
+		ctx.resetTransform();
 	};
 
 	useEffect(() => {
